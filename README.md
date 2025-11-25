@@ -1,1 +1,1 @@
-# rx-setor-bancario
+<iframe title="Dashboard RX do Setor Bancário de São Paulo" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiOTQxM2Y1N2ItMjAyZC00NjM1LWE5ZGQtODU2MjM3YmRjMTRiIiwidCI6ImIzZmQ1NzY3LTI2YTYtNGMzYy1hZmY1LTViNjQ0NGE2YmY2NCJ9" frameborder="0" allowFullScreen="true"></iframe>
