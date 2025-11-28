@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
     <title>Acesso ao Relatório</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,8 +12,13 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
             min-height: 100vh;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 22px;
         }
 
         .container {
@@ -23,90 +29,97 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             width: 350px;
             text-align: center;
+            align-self: center;
         }
 
-        h2 {
-            margin-top: 0;
-            color: #2b2b2b;
-            font-weight: 600;
-        }
-
-        input[type="password"] {
-            width: 100%;
+        input {
+            width: 90%;
             padding: 12px;
+            margin-top: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            margin-bottom: 15px;
             font-size: 15px;
-            box-sizing: border-box;
         }
 
         button {
+            margin-top: 20px;
             width: 100%;
             padding: 12px;
-            background-color: #2d6cdf;
+            background-color: #0078d4;
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
             cursor: pointer;
+            font-size: 16px;
             font-weight: bold;
         }
 
         button:hover {
-            background-color: #1e52ad;
-        }
-
-        #dashboard {
-            display: none;
-            margin-top: 30px;
+            background-color: #005fa3;
         }
 
         footer {
             margin-top: auto;
-            padding: 20px 0;
+            padding: 15px 0;
             text-align: center;
             font-size: 14px;
             color: #555;
             width: 100%;
         }
+
+        /* Área do dashboard (fullscreen visual) */
+        #dashboard {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        #dashboard iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
     </style>
 
-    <script>
-        function validarSenha() {
-            const senha = document.getElementById("senha").value;
-            const correta = "powerbi123";
+</head>
+<body>
 
-            if (senha === correta) {
-                document.querySelector(".container").style.display = "none";
+    <!-- Tela de login -->
+    <div class="container" id="loginBox">
+        <h2>Acesso ao Relatório</h2>
+        <input type="password" id="password" placeholder="Digite a senha">
+        <button onclick="verificarSenha()">Entrar</button>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard">
+        <iframe 
+            title="Dashboard RX do Setor Bancário de São Paulo"
+            src="https://app.powerbi.com/view?r=eyJrIjoiNGNhOTcxNmMtNzI0Yy00Njc0LTljZTgtNmUwODFiYWJiZGI4IiwidCI6ImIzZmQ1NzY3LTI2YTYtNGMzYy1hZmY1LTViNjQ0NGE2YmY2NCJ9"
+            allowFullScreen="true">
+        </iframe>
+    </div>
+
+    <!-- Rodapé (visível apenas no login) -->
+    <footer id="footer">
+        © 2025 Instituto Fibonacci — Todos os direitos reservados
+    </footer>
+
+    <script>
+        function verificarSenha() {
+            const senha = document.getElementById("password").value;
+
+            if (senha === "powerbi123") {
+                document.getElementById("loginBox").style.display = "none";
                 document.getElementById("dashboard").style.display = "block";
+                document.getElementById("footer").style.display = "none";
             } else {
                 alert("Senha incorreta.");
             }
         }
     </script>
-</head>
-
-<body>
-
-    <div class="container">
-        <h2>Acesso ao Relatório</h2>
-        <input type="password" id="senha" placeholder="Digite a senha">
-        <button onclick="validarSenha()">Entrar</button>
-    </div>
-
-    <div id="dashboard">
-        <iframe title="Dashboard RX do Setor Bancário de São Paulo" 
-        width="600" 
-        height="373.5"
-        src="https://app.powerbi.com/view?r=eyJrIjoiNGNhOTcxNmMtNzI0Yy00Njc0LTljZTgtNmUwODFiYWJiZGI4IiwidCI6ImIzZmQ1NzY3LTI2YTYtNGMzYy1hZmY1LTViNjQ0NGE2YmY2NCJ9" 
-        frameborder="0" 
-        allowFullScreen="true"></iframe>
-    </div>
-
-    <footer>
-        © Instituto Fibonacci — Todos os direitos reservados
-    </footer>
 
 </body>
 </html>
