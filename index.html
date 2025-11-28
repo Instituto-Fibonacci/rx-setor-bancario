@@ -1,125 +1,124 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Acesso ao Relatório</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            padding: 0;
+            background: linear-gradient(135deg, #e6ecf5, #f7f9fc);
+            font-family: Arial, sans-serif;
         }
 
-        h2 {
-            margin-bottom: 20px;
-            font-weight: 600;
-            font-size: 22px;
-        }
-
-        .container {
-            margin-top: 80px;
-            padding: 40px;
+        /* Tela de Login */
+        #login {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 350px;
+            width: 380px;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
             text-align: center;
-            align-self: center;
         }
 
-        input {
-            width: 90%;
+        .titulo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1a1a1a;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .sub {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        input[type="password"] {
+            width: calc(100% - 24px);
             padding: 12px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #c9c9c9;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 16px;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        input[type="password"]:focus {
+            border-color: #0366d6;
+            outline: none;
+            box-shadow: 0 0 5px rgba(3,102,214,0.3);
         }
 
         button {
             margin-top: 20px;
             width: 100%;
             padding: 12px;
-            background-color: #0078d4;
+            background: #0366d6;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
-            font-weight: bold;
+            transition: 0.3s;
         }
 
         button:hover {
-            background-color: #005fa3;
+            background: #024fa8;
         }
 
-        footer {
-            margin-top: auto;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
-            width: 100%;
-        }
-
-        /* Área do dashboard (fullscreen visual) */
-        #dashboard {
+        /* Relatório ocupando tela inteira */
+        #report {
             display: none;
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-
-        #dashboard iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             border: none;
         }
     </style>
-
 </head>
 <body>
 
-    <!-- Tela de login -->
-    <div class="container" id="loginBox">
-        <h2>Acesso ao Relatório</h2>
-        <input type="password" id="password" placeholder="Digite a senha">
-        <button onclick="verificarSenha()">Entrar</button>
-    </div>
+<div id="login">
+    <div class="titulo">Portal de Relatórios</div>
+    <div class="sub">Insira sua senha para continuar</div>
 
-    <!-- Dashboard -->
-    <div id="dashboard">
-        <iframe 
-            title="Dashboard RX do Setor Bancário de São Paulo"
-            src="https://app.powerbi.com/view?r=eyJrIjoiNGNhOTcxNmMtNzI0Yy00Njc0LTljZTgtNmUwODFiYWJiZGI4IiwidCI6ImIzZmQ1NzY3LTI2YTYtNGMzYy1hZmY1LTViNjQ0NGE2YmY2NCJ9"
-            allowFullScreen="true">
-        </iframe>
-    </div>
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="verificarSenha()">Entrar</button>
+</div>
 
-    <!-- Rodapé (visível apenas no login) -->
-    <footer id="footer">
-        © 2025 Instituto Fibonacci — Todos os direitos reservados
-    </footer>
+<!-- Relatório Power BI -->
+<iframe 
+    id="report"
+    src=""
+    allowFullScreen="true"></iframe>
 
-    <script>
-        function verificarSenha() {
-            const senha = document.getElementById("password").value;
+<script>
+    function verificarSenha() {
+        const senhaDigitada = document.getElementById("senha").value;
+        const senhaCorreta = "powerbi123";
 
-            if (senha === "powerbi123") {
-                document.getElementById("loginBox").style.display = "none";
-                document.getElementById("dashboard").style.display = "block";
-                document.getElementById("footer").style.display = "none";
-            } else {
-                alert("Senha incorreta.");
-            }
+        if (senhaDigitada === senhaCorreta) {
+            document.getElementById("login").style.display = "none";
+
+            document.getElementById("report").src =
+                "https://app.powerbi.com/view?r=eyJrIjoiNGNhOTcxNmMtNzI0Yy00Njc0LTljZTgtNmUwODFiYWJiZGI4IiwidCI6ImIzZmQ1NzY3LTI2YTYtNGMzYy1hZmY1LTViNjQ0NGE2YmY2NCJ9";
+
+            document.getElementById("report").style.display = "block";
+        } else {
+            alert("Senha incorreta.");
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
