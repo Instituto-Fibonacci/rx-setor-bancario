@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório</title>
+    <title>Acesso ao Relatório</title>
 
     <style>
         body {
@@ -13,7 +13,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Tela de Login */
         #login {
             position: absolute;
             top: 50%;
@@ -74,7 +73,6 @@
             background: #024fa8;
         }
 
-        /* Relatório ocupando tela inteira */
         #report {
             display: none;
             position: fixed;
@@ -89,14 +87,13 @@
 <body>
 
 <div id="login">
-    <div class="titulo">Portal de Relatórios</div>
+    <div class="titulo">Acesso ao Relatório</div>
     <div class="sub">Insira sua senha para continuar</div>
 
     <input type="password" id="senha" placeholder="Senha">
     <button onclick="verificarSenha()">Entrar</button>
 </div>
 
-<!-- Relatório Power BI -->
 <iframe 
     id="report"
     src=""
